@@ -53,7 +53,7 @@ public class MessageControllerHttpTest {
     }
     @Test
     public void getMessagesForUserTest() throws Exception{
-        String arrayToJson = getArrayToJson();
+        String arrayToJson = getArrayToJsonForUSer(1L);
         when(messageService.getMessagesForUser(1L)).thenReturn(getDummyMessagesWithUserId(1L));
         when(messageService.getAllMessages()).thenReturn(getDummyMessages());
         this.mockMvc.perform(get("/getUserMessage/1")).andDo(print()).andExpect(status().isOk())

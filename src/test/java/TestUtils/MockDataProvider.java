@@ -44,7 +44,13 @@ public class MockDataProvider {
     public static String getArrayToJson() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
-        String arrayToJson = objectMapper.writeValueAsString(getDummyMessagesWithUserId(1L));
+        String arrayToJson = objectMapper.writeValueAsString(getDummyMessages());
+        return arrayToJson;
+    }
+    public static String getArrayToJsonForUSer(Long userId) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        String arrayToJson = objectMapper.writeValueAsString(getDummyMessagesWithUserId(userId));
         return arrayToJson;
     }
     public static String getArrayToJsonForTimePeriod(LocalDateTime fromDateTime,LocalDateTime toDateTime) throws JsonProcessingException {
