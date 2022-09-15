@@ -17,7 +17,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
-
+import static TestUtils.MockDataProvider.*;
 
 @ExtendWith(MockitoExtension.class)
 public class MessageControllerTest {
@@ -78,35 +78,5 @@ public class MessageControllerTest {
             assertTrue(message.getCreatedDateTime().isBefore(LocalDateTime.of(2022,01,01,18,20,30)),"Message is Outside of Specific Time Period");
         });
     }
-    public List<Message> getDummyMessages(){
-        List<Message> dummyMessageList = new ArrayList<>();
-        dummyMessageList.add(new Message(2000L,1L,"Sample title 2000","Sample Message 2000", LocalDateTime.now(),LocalDateTime.now()));
-        dummyMessageList.add(new Message(2001L,2L,"Sample title 2001","Sample Message 2001L", LocalDateTime.now(),LocalDateTime.now()));
-        dummyMessageList.add(new Message(2002L,3L,"Sample title 2002","Sample Message 2002", LocalDateTime.now(),LocalDateTime.now()));
-        dummyMessageList.add(new Message(2003L,1L,"Sample title 2003","Sample Message 2003", LocalDateTime.now(),LocalDateTime.now()));
-        return dummyMessageList;
-    }
-    public List<Message> getDummyMessagesWithUserId(Long userId){
-        List<Message> dummyMessageList = new ArrayList<>();
-        dummyMessageList.add(new Message(2000L,userId,"Sample title 2000","Sample Message 2000", LocalDateTime.now(),LocalDateTime.now()));
-        dummyMessageList.add(new Message(2001L,userId,"Sample title 2001","Sample Message 2001L", LocalDateTime.now(),LocalDateTime.now()));
-        dummyMessageList.add(new Message(2002L,userId,"Sample title 2002","Sample Message 2002", LocalDateTime.now(),LocalDateTime.now()));
-        dummyMessageList.add(new Message(2003L,userId,"Sample title 2003","Sample Message 2003", LocalDateTime.now(),LocalDateTime.now()));
-        return dummyMessageList;
-    }
-    public List<Message> getDummyMessagesWithTimePeriod(LocalDateTime fromDateTime,LocalDateTime toDateTime){
-        List<Message> dummyMessageList = new ArrayList<>();
-        dummyMessageList.add(new Message(2000L,1L,"Sample title 2000","Sample Message 2000", fromDateTime,toDateTime));
-        dummyMessageList.add(new Message(2001L,2L,"Sample title 2001","Sample Message 2001L", fromDateTime,toDateTime));
-        dummyMessageList.add(new Message(2002L,3L,"Sample title 2002","Sample Message 2002", fromDateTime,toDateTime));
-        dummyMessageList.add(new Message(2003L,4L,"Sample title 2003","Sample Message 2003", fromDateTime,toDateTime));
-        return dummyMessageList;
-    }
-    public List<Message> getDummyMessagesWithTimePeriodAndUserId(Long userId,LocalDateTime createdDate){
-        List<Message> messageListForUser = getDummyMessagesWithUserId(userId);
-        messageListForUser.forEach(message -> {
-            message.setCreatedDateTime(createdDate);
-        });
-        return messageListForUser;
-    }
+
 }
